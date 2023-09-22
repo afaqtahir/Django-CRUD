@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import *
 # Create your views here.
 
+@login_required
 def recipes(request):
 
     if request.method == "GET":
@@ -21,13 +23,14 @@ def recipes(request):
             recipe_image = request.FILES.get("recipe_image")
         )
         return redirect('/recipes')
-
+@login_required
 def delete_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     res = recipe.delete()
     print(res)
     return redirect('/recipes')
 
+@login_required()
 def update_recipe(request, id):
     recipe = Recipe.objects.get(id=id)
     context = {'recipe': recipe}
