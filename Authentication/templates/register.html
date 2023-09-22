@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock %}
+{% block content %}
+
+<div class = "container mt-5">
+ <form class="col-6 mx-auto card p-3 shadow-lg" method="post">
+     {% csrf_token %}
+     <h2>Register Form</h2>
+     {% if messages %}
+     <div class="alert alert-primary" role="alert">
+          <ul class="messages">
+              {% for message in messages %}
+              <li> {{ message }} </li>
+              {% endfor %}
+          </ul>
+     </div>
+     {% endif %}
+     <div class="mb-3">
+        <label  class="form-label">First Name</label>
+        <input type="text" class="form-control" name="first_name" aria-describedby="emailHelp">
+      </div>
+     <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="last_name" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+     <div>
+         <p>
+             Already have an account?
+             <a href="/accounts/login/">Login</a>
+         </p>
+     </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+</form>
+</div>
+{% endblock %}
