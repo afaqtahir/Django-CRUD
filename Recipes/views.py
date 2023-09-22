@@ -23,3 +23,16 @@ def delete_recipe(request, id):
     res = recipe.delete()
     print(res)
     return redirect('/recipes')
+
+def update_recipe(request, id):
+    recipe = Recipe.objects.get(id=id)
+    context = {'recipe': recipe}
+    if request.method == 'POST':
+        recipe.recipe_name = request.POST.get('recipe_name')
+        recipe.recipe_description = request.POST.get('recipe_description')
+        image = request.FILES.get('recipe_image')
+        if image:
+            recipe.recipe_image = image
+        recipe.save()
+        return redirect('/recipes')
+    return render(request, "update_recipe.html", context)
