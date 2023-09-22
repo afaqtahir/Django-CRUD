@@ -8,7 +8,11 @@ from .models import *
 def recipes(request):
 
     if request.method == "GET":
-        context = {'recipes': Recipe.objects.all()}
+        queryset = Recipe.objects.all()
+        if request.GET.get('search'):
+            queryset = queryset.filter(recipe_name__icontains=request.GET.get('search'))
+
+        context = {'recipes': queryset, 'search_param': request.GET.get('search')}
         return render(request, "recipes.html", context)
 
     elif request.method == "POST":
