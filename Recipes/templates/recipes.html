@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Recipes - My Website{% endblock %}
+
+{% block content %}
+<div class = "container mt-5">
+  <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Add Recipes</h2>
+    <hr>
+    <div class="mb-3">
+      <label class="form-label">Recipe Name</label>
+      <input type="text" class="form-control" name="recipe_name" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Recipe Description</label>
+      <textarea name="recipe_description" class="form-control" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Recipe Image</label>
+      <input name="recipe_image" type="file" class="form-control" >
+    </div>
+    <button type="submit" class="btn btn-success">Add Recipe</button>
+  </form>
+</div>
+{% endblock %}
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="recipeSuccessToast">
+  <div class="toast-header">
+    <img src="..." class="rounded me-2" alt="...">
+    <strong class="me-auto">Bootstrap</strong>
+    <small>11 mins ago</small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+  </div>
+  <div class="toast-body">
+    Hello, world! This is a toast message.
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $("form").on("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+
+        // Simulate form submission (you would perform your actual form submission here)
+        // For this example, let's assume the form submission was successful.
+        // You should replace this with your actual AJAX or form submission code.
+        setTimeout(function() {
+            // Show the success toast
+            var toast = new bootstrap.Toast($("#recipeSuccessToast")[0]);
+            toast.show();
+        }, 1000); // You can adjust the delay as needed
+    });
+});
+</script>
+
