@@ -22,35 +22,30 @@
     </div>
     <button type="submit" class="btn btn-success">Add Recipe</button>
   </form>
+
+  <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Recipe Image</th>
+      <th scope="col">Recipe Name</th>
+      <th scope="col">Recipe Description</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+      <tr>
+        <td>
+          <img src="/media/{{recipe.recipe_image }}" class="img-rounded" style="height: 100px">
+        </td>
+        <td> {{recipe.recipe_name }} </td>
+        <td> {{recipe.recipe_description }} </td>
+        <td>
+          <a href="DeleteRecipe/{{recipe.id}}/" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 </div>
 {% endblock %}
-
-<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="recipeSuccessToast">
-  <div class="toast-header">
-    <img src="..." class="rounded me-2" alt="...">
-    <strong class="me-auto">Bootstrap</strong>
-    <small>11 mins ago</small>
-    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-  <div class="toast-body">
-    Hello, world! This is a toast message.
-  </div>
-</div>
-
-<script>
-$(document).ready(function() {
-    $("form").on("submit", function(event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-
-        // Simulate form submission (you would perform your actual form submission here)
-        // For this example, let's assume the form submission was successful.
-        // You should replace this with your actual AJAX or form submission code.
-        setTimeout(function() {
-            // Show the success toast
-            var toast = new bootstrap.Toast($("#recipeSuccessToast")[0]);
-            toast.show();
-        }, 1000); // You can adjust the delay as needed
-    });
-});
-</script>
-
